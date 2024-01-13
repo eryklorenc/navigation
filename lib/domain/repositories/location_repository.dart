@@ -1,8 +1,10 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../data/datasources/location_datasource.dart';
 
+@singleton
 class LocationRepository {
   final LocationDataSource _dataSource;
 
@@ -20,7 +22,8 @@ class LocationRepository {
 
     if (permission == LocationPermission.deniedForever) return;
 
-    yield* _dataSource.getCurrentPositionStream()
+    yield* _dataSource
+        .getCurrentPositionStream()
         .map((position) => LatLng(position.latitude, position.longitude));
   }
 }

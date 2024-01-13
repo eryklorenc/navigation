@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:navigation/data/datasources/location_datasource.dart';
+import 'package:navigation/app/core/utils/injection_container.dart';
 import 'package:navigation/domain/repositories/location_repository.dart';
 import 'package:navigation/services/sensor_service.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,8 +20,7 @@ class _NavigationPageState extends State<NavigationPage> {
   LatLng currentLocation = const LatLng(52.2319581, 21.0067249);
   double? heading;
   double pi = 3.1415926535897932;
-  final LocationRepository _locationRepository =
-      LocationRepository(LocationDataSource());
+  final LocationRepository _locationRepository = getIt<LocationRepository>();
   final SensorService _sensorService = SensorService();
 
   @override
@@ -55,15 +54,13 @@ class _NavigationPageState extends State<NavigationPage> {
   void _addPointToRoute(TapPosition position, LatLng latlng) {
     setState(() {
       if (routePoints.isEmpty) {
-        
         routePoints.add(currentLocation);
       } else {
-        
         routePoints.clear();
-       
+
         routePoints.add(currentLocation);
       }
-      
+
       routePoints.add(latlng);
     });
   }
