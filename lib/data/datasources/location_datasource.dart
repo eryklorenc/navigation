@@ -1,7 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@injectable
 class LocationDataSource {
   Stream<Position> getCurrentPositionStream() {
     return Geolocator.getPositionStream();

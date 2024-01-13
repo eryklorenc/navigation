@@ -4,7 +4,7 @@ import 'package:latlong2/latlong.dart';
 
 import '../../data/datasources/location_datasource.dart';
 
-@singleton
+@injectable
 class LocationRepository {
   final LocationDataSource _dataSource;
 

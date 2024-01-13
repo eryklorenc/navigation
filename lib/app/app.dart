@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:navigation/features/navigation/navigation_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navigation/app/core/utils/injection_container.dart';
+import 'package:navigation/features/navigation/cubit/navigation_cubit.dart';
+import 'package:navigation/features/navigation/presentation/navigation_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -7,12 +10,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      home: BlocProvider(
+        create: (context) => getIt<NavigationCubit>(),
+        child: const NavigationPage(),
       ),
-      home: const NavigationPage(title: 'Flutter Demo Home Page'),
     );
   }
 }

@@ -1,6 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
+@injectable
 class SensorService {
   Stream<AccelerometerEvent> get accelerometerStream => accelerometerEventStream();
   Stream<GyroscopeEvent> get gyroscopeStream => gyroscopeEventStream();
@@ -23,4 +25,5 @@ class SensorService {
     }
     return currentHeading ?? 0;
   }
+  
 }
